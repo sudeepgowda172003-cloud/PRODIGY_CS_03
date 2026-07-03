@@ -1,59 +1,59 @@
-# 🖼️ Pixel Manipulation for Image Encryption — PRODIGY_CS_02
+# 🔑 Password Complexity Checker — PRODIGY_CS_03
 
 ![Python](https://img.shields.io/badge/Python-3.x-blue?style=for-the-badge&logo=python)
-![Pillow](https://img.shields.io/badge/Pillow-Library-orange?style=for-the-badge)
 ![Status](https://img.shields.io/badge/Status-Completed-brightgreen?style=for-the-badge)
 ![Internship](https://img.shields.io/badge/Prodigy-InfoTech-purple?style=for-the-badge)
 
-> **Task 02** — Prodigy InfoTech Cyber Security Internship
+> **Task 03** — Prodigy InfoTech Cyber Security Internship
 
 ---
 
 ## 📌 Task Description
 
-Develop a simple **image encryption tool** using pixel manipulation. Perform operations like swapping pixel values or applying a basic mathematical operation to each pixel. Allow users to encrypt and decrypt images.
-
----
-
-## 🔍 How It Works
-
-Every image is made of **pixels**, and each pixel has 3 values — **R, G, B** (0 to 255).
-
-```
-Original Pixel → (200, 150, 100)
-XOR with key 123 → (179, 233, 23)   ← Encrypted!
-XOR with key 123 → (200, 150, 100)  ← Decrypted back!
-```
+Build a tool that **assesses the strength of a password** based on criteria such as length, presence of uppercase and lowercase letters, numbers, and special characters. Provide feedback to users on the password's strength.
 
 ---
 
 ## ✨ Features
 
-- ✅ **3 Encryption Methods** — XOR, ADD, SWAP
-- ✅ Encrypt any image (JPG, PNG, BMP)
-- ✅ Decrypt image back to original using the same key
-- ✅ Saves encrypted/decrypted image automatically
-- ✅ Simple menu-driven interface
+- ✅ Checks **5 security criteria**
+- ✅ Gives **score out of 8**
+- ✅ Visual **strength bar** display
+- ✅ Detailed **what's good / what to improve** feedback
+- ✅ Detects **common weak passwords**
+- ✅ Strength levels: Weak → Fair → Good → Strong → Very Strong
+- ✅ No external libraries needed!
 
 ---
 
-## 🔐 Encryption Methods
+## 🔍 Scoring Criteria
 
-| Method | Description | Key Range |
-|--------|-------------|-----------|
-| **XOR** | XOR each pixel with key value | 0 – 255 |
-| **ADD** | Add key to each pixel (mod 256) | 0 – 255 |
-| **SWAP** | Shuffle all pixel positions randomly | 0 – 999999 |
+| Criteria | Points |
+|----------|--------|
+| Length 8+ characters | +2 |
+| Length 12+ characters | +3 |
+| Uppercase letters (A–Z) | +1 |
+| Lowercase letters (a–z) | +1 |
+| Numbers (0–9) | +1 |
+| Special characters (!@#$%) | +2 |
+| Common password detected | -3 |
 
-> ⚠️ Use the **same method + same key** to decrypt!
+### Strength Levels
+
+| Score | Strength |
+|-------|----------|
+| 0 – 2 | 🔴 Weak |
+| 3 – 4 | 🟠 Fair |
+| 5 – 6 | 🟡 Good |
+| 7 | 🟢 Strong |
+| 8 | 💪 Very Strong |
 
 ---
 
 ## 🛠️ Requirements
 
-```bash
-pip install pillow numpy
-```
+- Python 3.x
+- No external libraries needed!
 
 ---
 
@@ -61,16 +61,13 @@ pip install pillow numpy
 
 ```bash
 # Clone the repository
-git clone https://github.com/Prasadsarkate/PRODIGY_CS_02.git
+git clone https://github.com/Prasadsarkate/PRODIGY_CS_03.git
 
 # Navigate to folder
-cd PRODIGY_CS_02
-
-# Install dependencies
-pip install pillow numpy
+cd PRODIGY_CS_03
 
 # Run the program
-python image_encryption.py
+python password_checker.py
 ```
 
 ---
@@ -78,40 +75,42 @@ python image_encryption.py
 ## 💻 Usage Example
 
 ```
-Main Menu:
-  1. Encrypt an image
-  2. Decrypt an image
-  3. Exit
+=============================================
+   🔑 Password Complexity Checker
+=============================================
 
-Enter choice: 1
-Enter image file path: photo.jpg
-Select method (1/2/3): 1        ← XOR
-Enter key (0–255): 123
+Enter password to check: MyP@ss#2024!
 
-🔒 Encrypting...
-✅ Saved → photo_encrypted.jpg
+─────────────────────────────────────────────
+  Overall  : 💪 Very Strong
+  Strength : [████████████████████] 100%
+  Score    : 8 / 8
+─────────────────────────────────────────────
+
+  What's good:
+    ✅ Excellent length (12+ characters)
+    ✅ Contains uppercase letters (A–Z)
+    ✅ Contains lowercase letters (a–z)
+    ✅ Contains numbers (0–9)
+    ✅ Contains special characters (!@#$ etc.)
+─────────────────────────────────────────────
 ```
 
 ```
-Enter choice: 2
-Enter image file path: photo_encrypted.jpg
-Select method (1/2/3): 1        ← XOR (same method!)
-Enter key (0–255): 123          ← same key!
+Enter password to check: password123
 
-🔓 Decrypting...
-✅ Saved → photo_encrypted_decrypted.jpg
-```
+─────────────────────────────────────────────
+  Overall  : 🔴 Weak
+  Strength : [████░░░░░░░░░░░░░░░░] 25%
+  Score    : 2 / 8
+─────────────────────────────────────────────
 
----
+  What to improve:
+    ❌ Add at least one UPPERCASE letter (A–Z).
+    ❌ Add at least one special character (!@#$%).
+    ⚠  This is a very common password — avoid it!
 
-## 🖼️ Visual Result
-
-```
-Original Image   →   Encrypt (key=123)   →   Encrypted Image
-   😊 Photo                🔑                  🌫️ Random Noise
-
-Encrypted Image  →   Decrypt (key=123)   →   Original Image
-  🌫️ Noise                 🔑                    😊 Photo
+  💡 Tip: A strong password looks like → MyP@ss#2024!
 ```
 
 ---
@@ -119,10 +118,9 @@ Encrypted Image  →   Decrypt (key=123)   →   Original Image
 ## 📂 Project Structure
 
 ```
-PRODIGY_CS_02/
+PRODIGY_CS_03/
 │
-├── image_encryption.py   # Main program
-├── sample.jpg            # Sample test image (optional)
+├── password_checker.py   # Main program
 └── README.md             # Project documentation
 ```
 
@@ -130,11 +128,11 @@ PRODIGY_CS_02/
 
 ## 📚 What I Learned
 
-- How **images are stored** as pixel arrays
-- **XOR encryption** — a reversible bitwise operation
-- Using **NumPy** for fast array manipulation
-- **PIL/Pillow** library for image processing
-- Basics of **visual cryptography**
+- Importance of **password security** in cybersecurity
+- Using **regex** for pattern matching in Python
+- How to build a **scoring system** for evaluations
+- Understanding **common password vulnerabilities**
+- Building user-friendly **CLI feedback tools**
 
 ---
 
@@ -151,4 +149,4 @@ PRODIGY_CS_02/
 
 This project was completed as part of the **Prodigy InfoTech Cyber Security Internship**.
 
-`#ProdigyInfoTech` `#Internship` `#CyberSecurity` `#Python` `#ImageEncryption` `#PixelManipulation`
+`#ProdigyInfoTech` `#Internship` `#CyberSecurity` `#Python` `#PasswordSecurity`
